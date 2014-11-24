@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	
+	<bean id="empWrapper1" class="hello.Employee" >
+		<!-- <property name="firstName" value = "test" />
+		<property name="lastName"  value = "test"/>
+		<property name="id" value = "779079"/>
+		<property name="department" value =20/>
+		<property name="age"  value=30/>
+		<property name="salary"  value="3000"/> -->
+		
+	</bean>	
+	
+	 <!-- <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+   		<property name="objectMapper">
+     		<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"/>
+   		</property>
+   		 <property name="serializers">
+           <bean class="hello.EmployeeWrapper"/>         
+       </property>
+ 	  </bean> -->
+	
+	  
+	  
+	  
+<!-- <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+   <property name="objectMapper">
+     <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+       <property name="serializers">
+         <array>
+           <bean class="hello.EmployeeWrapper" />
+         </array>
+       </property>
+     </bean> 
+     
+     
+   </property>
+ </bean>-->
+ 
+	
+	
+	
+	
+</beans>
