@@ -4,8 +4,16 @@ import java.io.Serializable;
 
 
 
+
+
+
+
+
+
 import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //@XmlRootElement
@@ -22,9 +30,9 @@ public class Employee implements Serializable {
 	//@JsonProperty ("lastName")
 	String lastName;
 	//@JsonProperty ("age")
-	int age;
+	String age;
 	//@JsonProperty ("department")
-	int department;
+	String department;
 	//@JsonProperty ("Salary")
 	String Salary;
 	//@JsonProperty ("id")
@@ -48,18 +56,18 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 	
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 	//@JsonProperty ("age")
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
-	public int getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
 	//@JsonProperty ("department")
-	public void setDepartment(int department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 	public String getSalary() {

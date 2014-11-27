@@ -1,0 +1,17 @@
+package hello.db;
+
+public class CreateDataSource {
+	
+public CreateDataSource (){
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+}
+
+public setUPConnection () {
+	Connection conn = null;
+	conn =DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+		                                   "user=monty&password=greatsqldb");
+	
+	
+}
+
+}
