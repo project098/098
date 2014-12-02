@@ -1003,3 +1003,9 @@ Binding(CTRL+D,
 
 !ENTRY org.eclipse.ui 4 4 2014-12-01 06:13:50.460
 !MESSAGE Plug-in 'org.eclipse.m2e.refactoring' contributed an invalid Menu Extension (Path: 'org.eclipse.jdt.ui.refactoring.menu' is invalid): org.eclipse.m2e.editor.RenameProjectAction
+
+!ENTRY org.eclipse.ui 4 4 2014-12-02 01:20:56.624
+!MESSAGE Plug-in 'org.eclipse.m2e.refactoring' contributed an invalid Menu Extension (Path: 'org.eclipse.jdt.ui.refactoring.menu' is invalid): org.eclipse.m2e.editor.RenameProjectAction
+
+!ENTRY org.eclipse.ui 4 4 2014-12-02 01:22:45.293
+!MESSAGE Plug-in 'org.eclipse.m2e.refactoring' contributed an invalid Menu Extension (Path: 'org.eclipse.jdt.ui.refactoring.menu' is invalid): org.eclipse.m2e.editor.RenameProjectAction
