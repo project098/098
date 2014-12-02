@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.elro.model.bean.Employee;
-
 public class CreateDataSource {
 	Connection conn = null;
 	Statement stmt = null;

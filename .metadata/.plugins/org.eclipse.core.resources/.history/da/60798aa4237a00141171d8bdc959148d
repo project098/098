@@ -1,5 +1,5 @@
 package com.elro.db;
-
+import com.elro.model.Employee.bean.Employee;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.elro.model.bean.Employee;
 
 public class CreateDataSource {
 	Connection conn = null;

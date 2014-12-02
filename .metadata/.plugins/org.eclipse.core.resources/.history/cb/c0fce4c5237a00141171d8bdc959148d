@@ -1,15 +1,13 @@
 package com.elro.db.test;
 
 
-
+import com.elro.model.Employee.bean.Employee;
 
 
 import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
-
-import com.elro.model.bean.Employee;
 
 public class TestEmployees {
 
