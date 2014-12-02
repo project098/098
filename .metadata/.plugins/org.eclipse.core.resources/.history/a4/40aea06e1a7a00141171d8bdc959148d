@@ -1,0 +1,14 @@
+import hello.Employee;
+
+/**
+ * 
+ */
+
+
+public interface EmployeeImpl {	
+	
+	public void insert(Employee employee);
+	public Employee findByCustomerId(String empId);
+	
+	
+}

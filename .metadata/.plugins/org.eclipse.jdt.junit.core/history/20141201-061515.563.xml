@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TestEmployees (1)" project="elro-sit" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="hello.db.test.TestEmployees" time="1.104">
+    <testcase name="testGetEmployees" classname="hello.db.test.TestEmployees" time="1.104"/>
+  </testsuite>
+</testrun>

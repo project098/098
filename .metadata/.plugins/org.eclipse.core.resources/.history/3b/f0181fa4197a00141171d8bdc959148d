@@ -1,0 +1,33 @@
+package com.elro.db.test;
+
+import hello.Employee;
+import com.elro.db.test.CreateDataSource;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.junit.Test;
+
+public class TestEmployees {
+
+	@Test 
+	public void testGetEmployees () {
+		
+		CreateDataSource ds = new CreateDataSource ();
+		List<Employee> employees = null;
+		try {
+			employees = ds.getEmployees();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Employee employee: employees) {
+			System.out.println (employee.getFirstName());
+			
+		}
+	}
+	
+	
+	
+}

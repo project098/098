@@ -1,0 +1,16 @@
+package com.elro.model.impl;
+
+import com.elro.model.Employee.bean.Employee;
+
+
+/**
+ * 
+ */
+
+public interface EmployeeImpl {	
+	
+	public void insert(Employee employee);
+	public Employee findByCustomerId(String empId);
+	
+	
+}
