@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+</head>
+<body>
+<script>
+    //Model
+    var model = new Backbone.Model({
+        name; ''
+    });
+
+    //view
+    model.on (keyup,function(){
+        $('nameSpan').html(model.get('name;'))
+    })
+
+    //Controller
+    $('#textInput').on('keyup',function ()){
+        model.set('name',$('#textinput').val());
+    }
+
+</script>
+
+
+</body>
+</html>

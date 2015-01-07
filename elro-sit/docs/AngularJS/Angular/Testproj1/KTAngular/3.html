@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+Name:  <input type = text id="textinput">
+Hello  <span id="nameID"></span>
+
+<script>
+    var textInputElement = document.getElementById ("textinput");
+    textInputElement.addEventListener ('keyup',function (){
+        console.log ("key up event");
+        var textValue = textInputElement.value;
+        var inlineComp = document.getElementById("nameID");
+        inlineComp.innerHTML = textValue;
+
+    })
+</script>
+</body>
+</html>

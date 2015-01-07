@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="customDirectiveApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<script src="angular.js"></script>
+
+<body>
+
+<script>
+   var customDirectiveMod = angular.module("customDirectiveApp", []);
+   customDirectiveMod.directive('div', function() {
+       var directive = {};
+       directive.restrict = 'E'; /* restrict this directive to elements */
+       directive.template = "My first directive: {{textToInsert}}";
+        return directive;
+    })
+
+   customDirectiveMod.controller ('myDirectiveCtrl',function($scope){
+    $scope.textToInsert = "Hai MGO Team";
+   });
+
+
+   //Reference for CustomDirective --http://tutorials.jenkov.com/angularjs/custom-directives.html
+   //link () , compile () , transclude  and custom directive
+
+    //More example on Directive using a custom tag <userinfo>
+
+
+ //EXAMPLE 1
+
+   //Using the separate HTML template file and the templateUrl property is especially useful when you
+   // create more specialized directives, like a directives showing user info. Here is an example:
+/*
+   myapp = angular.module("myapp", []);
+
+   myapp.directive('userinfo', function() {
+       var directive = {};
+
+       directive.restrict = 'E'; *//* restrict this directive to elements *//*
+       directive.templateUrl = "/myapp/html-templates/userinfo-template.html";
+
+       return directive;
+   });*/
+
+
+    //EXAMPLE 2
+
+    /*
+     <userinfo user="jakob"></userinfo>
+     <userinfo user="john"></userinfo>
+
+     myapp.directive('userinfo', function() {
+     var directive = {};
+
+     directive.restrict = 'E';
+
+     directive.template = "User : <b>{{user.firstName}}</b> <b>{{user.lastName}}</b>";
+    // isolate default scope variable from directive scope variable
+     directive.scope = {
+     user : "=user"
+     }
+     return directive;
+     });
+
+     myapp.controller("MyController", function($scope, $http) {
+     $scope.jakob = {};
+     $scope.jakob.firstName = "Jakob";
+     $scope.jakob.lastName  = "Jenkov";
+
+     $scope.john = {};
+     $scope.john.firstName = "John";
+     $scope.john.lastName  = "Doe";
+     });
+
+
+     */
+
+
+
+
+
+
+
+</script>
+
+
+<div ng-controller="myDirectiveCtrl" >
+    <div>This div will be replaced</div>
+</div>
+
+
+</body>
+</html>

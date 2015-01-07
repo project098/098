@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="myAnimateApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>http://plnkr.co/edit/uDYYAJZ1mQukVRzfzR9v?p=preview</title>
+    <script src="angular.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.2.4/angular-animate.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.2.4/angular-route.js"></script>
+    <link rel="stylesheet" type="text/css" href="animations.css" />
+</head>
+<body>
+
+
+
+
+<button ng-click="goto('/page-one')">View Page One</button>
+<button ng-click="goto('/page-two')">View Page Two</button>
+<div class="view-container">
+    <div ng-view class="view-animation"></div>
+</div>
+
+<script type="text/ng-template" id="one.html">
+    Page One
+</script>
+<script type="text/ng-template" id="two.html">
+    Page Two
+</script>
+
+
+<script>
+
+//Reference URL -- http://plnkr.co/edit/uDYYAJZ1mQukVRzfzR9v?p=preview
+//Reference 2 http://www.ng-newsletter.com/advent2013/#!/day/11
+//dependent files- animations.css
+
+    angular.module('myAnimateApp', ['ngAnimate', 'ngRoute'])
+
+            .config(['$routeProvider', function($routeProvider) {
+                $routeProvider.when('/page-one', {
+                    templateUrl : 'one.html'
+                },'');
+                $routeProvider.when('/page-two', {
+                    templateUrl : 'two.html'
+                },'');
+            }])
+
+            .run(['$rootScope', '$location', function($rootScope, $location) {
+                $rootScope.goto = function(path) {
+                    $location.path(path);
+                }
+            }]);
+
+
+</script>
+
+</body>
+</html>

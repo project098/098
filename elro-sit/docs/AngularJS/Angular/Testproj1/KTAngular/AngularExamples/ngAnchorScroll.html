@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="anchorScrollModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+</head>
+<body>
+
+<script>
+
+    //references1 http://stackoverflow.com/questions/14712223/how-to-handle-anchor-hash-linking-in-angularjs
+    //references2 http://plnkr.co/edit/Po37JFeP5IsNoz5ZycFs?p=preview ,,,, $routeProvider
+    //Familiarize the use of $location ,  $anchorscroll
+    //Inject the $anchorScroll to the controller , and it will scroll you to any element with the id found in $location.hash()
+
+
+    //Typical href entry in angular href="#/route#anchorID
+    //where route is the current angular route and anchorID matches an <a id="anchorID"> somewhere on the page
+    //for Example -  (/products##books)
+    var anchorScrollMod = angular.module('anchorScrollModule',[]);
+    anchorScrollMod.controller('anchorScrollCtrl', function($scope, $location, $anchorScroll) {
+        $scope.scrollTo = function(id) {
+            $location.hash(id);
+            $anchorScroll();
+        }
+    });
+
+
+
+    //Typical way of routing
+// Setting up routing logic here
+
+    /*  app.config(function($routeProvider) {
+        $routeProvider.
+                when('/', {controller:'MainCtrl', templateUrl:'main.html'}).
+                when('/faq:v', {controller:'MainCtrl', templateUrl:'faq.html'}).
+                otherwise({redirectTo:'/'});
+    });*/
+
+
+
+
+</script>
+
+<div ng-controller="anchorScrollCtrl">
+
+    <a href="" ng-click="scrollTo('faq-1')">Question 1</a>
+    <a href="" ng-click="scrollTo ('faq-2')">Question 2</a>
+    <a href= "" ng-click=scrollTo('foo')>Foo</a>
+    <p>##entries </p>>
+    <a href="##faq-1">Question 1</a>
+    <a href="##faq-2">Question 2</a>
+    <a href="##faq-3">Question 3</a>
+    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h3 id="faq-1">Question 1</h3>
+    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+         <h3 id="faq-2">Question 2</h3>
+    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h3 id="fa1-3">Question 3</h3>
+    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<div id="foo">Here you are</div>
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

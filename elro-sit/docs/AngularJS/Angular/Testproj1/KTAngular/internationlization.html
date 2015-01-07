@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js">
+    </script>
+
+</head>
+<body>
+
+
+<div ng-app="myApp" ng-controller="intlCtrl">
+
+    <h1>Hello All</h1>
+   <button ng-init="changeLanguage = 'en'" ng-controller="intlCtrl"> English </button>
+    <button ng-init="changeLanguage = 'de'" ng-controller="intlCtrl"> German </button>
+</div>
+
+<script>
+</script>
+<script>
+    var app = angular.module('at', ['pascalprecht.translate']);
+
+    app.config(function ($translateProvider) {
+        $translateProvider.translations('en', {
+            TITLE: 'Hello',
+            FOO: 'This is a paragraph.',
+            BUTTON_LANG_EN: 'english',
+            BUTTON_LANG_DE: 'german'
+        });
+        $translateProvider.translations('de', {
+            TITLE: 'Hallo',
+            FOO: 'Dies ist ein Paragraph.',
+            BUTTON_LANG_EN: 'englisch',
+            BUTTON_LANG_DE: 'deutsch'
+        });
+        $translateProvider.preferredLanguage('en');
+    });
+
+    app.controller('intlCtrl', function ($scope, $translate) {
+        alert ($scope.changeLanguage);
+        $scope.changeLanguage = function (key) {
+            $translate.use(key);
+        };
+    });
+</script>
+
+
+
+</body>
+</html>

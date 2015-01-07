@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="transcludeApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+</head>
+<body>
+
+
+
+<script>
+
+
+    // Reference: http://tutorials.jenkov.com/angularjs/custom-directives.html
+
+
+    /*
+     The directive is marked by the <mytransclude> element. But the content inside it is set by the developer.
+      Thus, this part of the HTML should not be replaced by the directive's HTML template. We actually want that part of the HTML to be processed by AngularJS. This processing is called "transclusion".
+
+     In order to make AngularJS process the HTML inside a directive, you have to set the transclude property
+     of the directive definition object to true. You will also have to tell AngularJS what part of the directive's
+     HTML template that is to contain the transcluded HTML. You do so by inserting the ng-transclude attribute
+     (a directive, really) into the HTML element in the HTML template where you want the transcluded HTML inserted
+
+     */
+
+    var transcludeMod = angular.module("transcludeApp", []);
+    transcludeMod.directive('mytransclude', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+        directive.transclude = true;
+        directive.template = "<div class='myTransclude' ng-transclude></div>";
+
+        return directive;
+    });
+    transcludeMod.controller("transcludeCtrl", function($scope, $http) {
+        $scope.firstName = "Jakob";
+    });
+</script>
+
+<div ng-controller="transcludeCtrl">
+<mytransclude>This is a transcluded directive {{firstName}}</mytransclude>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/*
+ * ngView triggers three animation events: enter, leave and move.
+ */
+.view-container {
+    height:500px;
+    position:relative;
+}
+
+.view-animation.ng-enter {
+    -webkit-animation: enter_animation 1s;
+    animation: enter_animation 1s;
+
+    /*
+     * ng-animate has a slight starting delay for optimization purposes
+     * so if you see a flicker effect then you'll need to put some extra
+     * styles to "shim" the animation.
+     */
+    left:100%;
+}
+
+.view-animation.ng-leave {
+    -webkit-animation: leave_animation 1s;
+    animation: leave_animation 1s;
+    left:0%;
+}
+
+.view-animation.ng-leave,
+.view-animation.ng-enter {
+    position:absolute;
+    top:0;
+    width:100%;
+}
+
+/*
+ * the animation below will move enter in the view from the right side of the screen
+ * and move the current (expired) view from the center of the screen to the left edge
+ */
+@keyframes enter_animation {
+    from { left:100%; }
+    to { left:0; }
+}
+
+@-webkit-keyframes enter_animation {
+    from { left:100%; }
+    to { left:0; }
+}
+
+@keyframes leave_animation {
+    from { left:0; }
+    to { left:-100%; }
+}
+
+@-webkit-keyframes leave_animation {
+    from { left:0; }
+    to { left:-100%; }
+}

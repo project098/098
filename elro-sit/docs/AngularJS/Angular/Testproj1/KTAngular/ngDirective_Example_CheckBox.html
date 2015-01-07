@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="checkboxExample">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<script>
+    angular.module('checkboxExample', [])
+            .controller('ExampleController', ['$scope', function($scope) {
+                $scope.value1 = true;
+                $scope.value2 = 'YES'
+            }]);
+</script>
+
+
+<form name="myForm" ng-controller="ExampleController">
+    Value1: <input type="checkbox" ng-model="value1"> <br/>
+    Value2: <input type="checkbox" ng-model="value2"
+                   ng-true-value="'YES'" ng-false-value="'NO'"> <br/>
+    <tt>value1 = {{value1}}</tt><br/>
+    <tt>value2 = {{value2}}</tt><br/>
+</form>
+
+</body>
+</html>

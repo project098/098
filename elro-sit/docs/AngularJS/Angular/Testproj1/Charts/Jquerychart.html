@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<script>
+
+
+    function fetchData() {
+
+        $.ajax({
+            url:      'json_fetch_new_data.php',
+            method:   'GET',
+            dataType: 'json',
+            success:  function(series) {
+                var data = [ series ];
+
+                $.plot($('#placeholder'), data, options);
+            }
+        });
+
+        setTimeout(fetchData, 1000);
+    }
+
+
+
+
+
+
+    /*
+    Replace the dat population using angular
+
+    function Hello1 ($scope,$http){
+     var springRestAppMod = angular.module ("springRestCtrlModule",[]);
+    $http(
+            {
+                url:'http://localhost:8080/createEmp',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:63343/'},
+                data:JSON.stringify( {firstName: 'shameer', lastName: 'syed', id: '779079',department:4,age:38})
+            }
+    ).success(function(data)
+            {
+                $scope.api = data;
+                console.log ("hai  vevery");
+                console.log(data);
+            });
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<body>
+<div id="placeholder" style="width:600px;height:300px"></div>
+</body>
+</html>

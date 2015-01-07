@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="AnchorScrollApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.2.4/angular-route.js"></script>
+</head>
+<body>
+
+
+
+<script>
+
+    //other dependent file ---wee.html , and test.html
+    //References - http://www.benlesh.com/2013/02/angular-js-scrolling-to-element-by-id.html
+
+    //I subscribed to the $routeChangeSuccess event broadcast by the $routeProvider. Inside of that,
+    // I set the $location.hash to the value passed into $routeParams at the key scrollTo.
+
+    document.write('<base href="' + document.location + '" />');
+
+
+
+</script>
+<script>
+
+
+    var anchorScrollMod = angular.module('AnchorScrollApp', ['ngRoute']);
+    anchorScrollMod.config(function($routeProvider) {
+        $routeProvider.when('/test', {
+            controller: 'TestCtrl',
+            templateUrl: 'test.html'
+        },'')
+                .when('/weee', {
+                    controller: 'WeeeCtrl',
+                    templateUrl: 'weee.html'
+                });
+    });
+
+    anchorScrollMod.run(function($rootScope, $location, $anchorScroll, $routeParams) {
+        $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+            $location.hash($routeParams.scrollTo);
+            $anchorScroll();
+        });
+    })
+
+    anchorScrollMod.controller('MainCtrl', function($scope, $location, $anchorScroll, $routeParams) {
+    });
+
+
+    anchorScrollMod.controller('TestCtrl', function($scope) {
+    });
+
+
+    anchorScrollMod.controller('WeeeCtrl', function($scope, $location, $anchorScroll, $routeParams) {
+    });
+
+
+</script>
+
+
+
+
+<a href="#test?scrollTo=foo">Test / Foo</a>
+<a href="#weee?scrollTo=bar">Weee / Bar</a>
+<div ng-view></div>
+{{scrollTo}}
+
+
+
+
+
+</body>
+</html>

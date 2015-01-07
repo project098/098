@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js">
+    </script>
+</head>
+<body>
+<div ng-app="" ng-init="quantity=1;price=5">
+
+    Quantity: <input type="number"	ng-model="quantity">
+    Costs:    <input type="number" ng-model="price">
+
+    Total in dollar: {{ quantity * price }}
+    Total in dollar effective way : <span ng-bind="quantity*price"></span>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

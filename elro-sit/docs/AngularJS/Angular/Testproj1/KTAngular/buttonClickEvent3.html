@@ -1,0 +1,30 @@
+<html ng-app="button3">
+<head>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="button3Ctrl">
+    <ul>
+        <li ng-repeat="name in namesList">{{name}}</li>
+    </ul>
+
+    <form ng-submit="callAction()">
+        <input type="text" ng-model="enteredName">
+        <input type="submit" value="Add">
+    </form>
+</div>
+<script>
+
+  var myapp =angular.module("button3",[]);
+  myapp.controller ('button3Ctrl',function ($scope){
+    $scope.namesList = ['shameer','Ganesh','Pops','Ranjini'];
+      $scope.callAction = function (){
+        $scope.namesList.push($scope.enteredName);
+
+      };
+  });
+
+</script>
+
+</body>
+</html>

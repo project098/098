@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="countryApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src ="angular.js"></script>
+</head>
+<body ng-controller="countryCtrl">
+
+<table>
+    <th>Contry</th>
+    <th>Name</th>
+    <tr ng-repeat="country in countries">
+        <td>{{country.name}}</td>
+        <td>{{country.population}}</td>
+    </tr>
+</table>
+
+<script>
+
+    var countryApp = angular.module ("countryApp",[]);
+    countryApp.controller ("countryCtrl",function ($scope,$http)
+            {
+                $http.get ("countries.json").success (function (data)
+                {
+                    $scope.countries = data;
+                });
+            }
+
+    )
+</script>
+
+</body>
+</html>

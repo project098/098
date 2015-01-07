@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+    <script>
+
+
+        //A typical example of Designing the page, using Routing App , Using Data Cache , and a Realtime Server side request.
+        //Referece http://www.phase2technology.com/blog/caching-json-arrays-using-cachefactory-in-angularjs-1-2-x/
+        var myApp = angular.module('myApp', ['ngRoute']);
+
+        // Define Routing for app
+        myApp.config(['$routeProvider',
+            function($routeProvider) {
+                $routeProvider.
+                        when('/main', {
+                            templateUrl: 'main.html',
+                            controller: 'MyMain'
+                        }).
+                        otherwise({
+                            redirectTo: '/main'
+                        });
+            }
+        ]);
+
+        // Caching the data...
+        myApp.factory('myCache', function($cacheFactory) {
+            return $cacheFactory('myData');
+        });
+
+        // Displays a list of data
+        myApp.controller('MyMain', ['$scope', '$http', 'myCache',
+            function ($scope, $http, myCache) {
+                var cache = myCache.get('myData');
+                if (cache) {
+                    $scope.variable = cache;
+                }
+                else {
+                    $http.get('http://www.example.com/path/to/api/endpoint')
+                            .success(function(data) {
+                                $scope.variable = data;
+
+                                myCache.put('myData', data);
+                            }
+                    );
+                }
+            }
+
+        ]);
+
+    </script>
+
+
+
+
+</body>
+</html>

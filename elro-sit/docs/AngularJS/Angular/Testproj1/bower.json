@@ -1,0 +1,21 @@
+{
+  "name": "y",
+  "version": "1.2.20",
+  "description": "AngularKT",
+  "main": "1.html",
+  "authors": [
+    "shameer"
+  ],
+  "license": "MIT",
+  "homepage": "1.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.20"
+  }
+}

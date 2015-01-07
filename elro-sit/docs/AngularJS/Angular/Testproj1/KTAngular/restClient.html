@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js">
+    </script>
+    <title></title>
+</head>
+<body>
+
+
+<script>
+
+
+    function Hello1 ($scope,$http){
+        var springRestAppMod = angular.module ("springRestCtrlModule",[]);
+
+
+        /*
+        this style no longer supported in latest versions of angularJS
+        springRestAppMod.config(function($httpProvider) {
+            //Enable cross domain calls
+            $httpProvider.defaults.useXDomain = true;
+            //Remove the header used to identify ajax call  that would prevent CORS from working
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+            console.log ("test message");
+        });*/
+
+        $http(
+                {
+                    url:'http://localhost:8080/createEmp',
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:63343/'},
+                    data:JSON.stringify( {firstName: 'shameer', lastName: 'syed', id: '779079',department:4,age:38})
+                }
+        ).success(function(data)
+                {
+                    $scope.api = data;
+                    console.log ("hai  vevery");
+                    console.log(data);
+                });
+    }
+
+
+
+
+</script>
+
+
+
+<div ng-app="springRestCtrlModule" ng-controller="Hello1">
+    <p>Name 1 is {{api.message}}</p>
+
+</div>
+
+
+<!--<div ng-controller="Hello2">
+    <p>Name 1 is {{api.message}}</p>
+    &lt;!&ndash;<p>Name 2  is {{wines.name2}}</p>&ndash;&gt;
+</div>-->
+
+
+
+</body>
+</html>

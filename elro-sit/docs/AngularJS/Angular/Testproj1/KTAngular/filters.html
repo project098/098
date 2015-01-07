@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.min.js">
+    </script>
+</head>
+<body>
+
+<div ng-app="" ng-controller="namesController">
+
+    <ul>
+    <li ng-repeat="friend in friendsnamess | orderBy:'country'">
+        {{ friend.name + ', ' + friend.country }}
+    </li>
+    </ul>
+
+</div>
+</body>
+
+<script>
+
+    function namesController ($scope) {
+        $scope.friendsnamess=[
+            {name:'Jani',country:'Norway'},
+            {name:'Hege',country:'Sweden'},
+            {name:'Kai',country:'Denmark'}];
+    }
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="rootModuleApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src = angular.js>
+    </script>
+</head>
+<body>
+<div ng-controller="MainCtrl">
+    <h1>Output: {{message}}</h1>
+</div>
+<script>
+    var app = angular.module('rootModuleApp', []);
+    app.controller('MainCtrl', function($scope) {
+        $scope.message = 'from MainCtrl';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>list of persons. How can I make them all 5cm smaller - _.each()</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+
+
+</head>
+<body>
+<script>
+    var persons = [
+        {
+            name   : 'Bob',
+            height : 195
+        },
+        {
+            name   : 'Stefan',
+            height : 183
+        }
+    ]
+
+    _.each( persons, function( person ) {
+        person.height = person.height - 5;
+        console.log("person"+person.height);
+    } );
+
+
+</script>
+</body>
+</html>

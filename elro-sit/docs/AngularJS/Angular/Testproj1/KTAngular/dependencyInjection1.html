@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="diModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>https://docs.angularjs.org/guide/di  https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection</title>
+    <script>
+
+        /*
+        DI in multiple way
+        */
+
+
+
+
+
+
+        /*
+        First Style
+        */
+        var diapp = angular.module("diModule",[]);
+        diapp.provider('greeting', function() {
+            this.$get = function() {
+                return function(name) {
+                    alert("Hello, " + name);
+                };
+            };
+        });
+        /*
+         Second Style
+         */
+        diapp.factory('greeting', function() {
+            return function(name) {
+                alert("Hello, " + name);
+            };
+        });
+        /*
+         Third Style
+         */
+        diapp.value('greeting', function(name) {
+            alert("Hello, " + name);
+        });
+
+
+//One more way of initializing
+        /*  myMod.config(function($provide) {
+         $provide.provider('greeting', function() {
+         this.$get = function() {
+         return function(name) {
+         alert("Hello, " + name);
+         };
+         };
+         });
+         });*/
+
+
+
+        /*
+        Invoking the registered services - By Controller
+         */
+
+        diapp.controller('diCtrl', function($scope, greeting) {
+            $scope.onClick = function() {
+                greeting('MGO TEAM');
+            };
+        });
+        /*
+         Invoking  the registered services - $injector
+         */
+        var greeting = $injector.get('greeting');
+        greeting('Ford Prefect');
+
+    </script>
+</head>
+<body>
+
+<div ng-controller="diCtrl">
+    <input type="text" ng-model = 'di'>
+</div>
+
+</body>
+</html>

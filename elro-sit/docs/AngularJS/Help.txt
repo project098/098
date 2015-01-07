@@ -1,0 +1,226 @@
+
+
+http://jsfiddle.net/BinaryMuse/9GjYg/ 
+(For testing javascript)
+
+https://docs.angularjs.org/api/auto
+https://docs.angularjs.org/guide/templates
+
+
+
+https://github.com/angelozerr/angularjs-eclipse/wiki/Getting-Started
+
+(Eclipse plugin setup)
+
+
+(API Reference)
+
+Broad Classification how it organized
+-------------------------------------
+Angular JS hava number "Modules" , Modules have components- Following are are the components
+directives, services, filters, providers, templates, global APIs, and testing mocks.
+
+Note:
+Angular Prefixes $ and $$: To prevent accidental name collisions with your code, Angular prefixes names of public objects with $ and names of private objects with $$. Please do not use the $ or $$ prefix in your code.
+
+
+
+FEATURES
+--------
+http://code.tutsplus.com/tutorials/5-awesome-angularjs-features--net-25651 
+
+(features)
+
+1) Two-way Data binding
+Traditionally, when the model changes, the developer is responsible for manually manipulating the DOM elements and attributes to reflect these changes. This is a two-way street. In one direction, the model changes drive change in DOM elements. In the other, DOM element changes necessitate changes in the model.
+2) Templates
+
+The HTML templates are parsed by the browser into the DOM. The DOM then becomes the input to the AngularJS compiler. AngularJS traverses the DOM template for rendering instructions, which are called directives. Collectively, the directives are responsible for setting up the data-binding for your application view.
+
+
+
+Here is an example where I am using the ng-repeat directive to loop over the images array and populate what is essentially an img template.
+
+function AlbumCtrl($scope) {
+    scope.images = [
+        {"thumbnail":"img/image_01.png", "description":"Image 01 description"},
+        {"thumbnail":"img/image_02.png", "description":"Image 02 description"},
+        {"thumbnail":"img/image_03.png", "description":"Image 03 description"},
+        {"thumbnail":"img/image_04.png", "description":"Image 04 description"},
+        {"thumbnail":"img/image_05.png", "description":"Image 05 description"}
+    ];
+}
+
+
+<div ng-controller="AlbumCtrl">
+  <ul>
+    <li ng-repeat="image in images">
+      <img ng-src="{{image.thumbnail}}" alt="{{image.description}}">
+    </li>
+  </ul>
+</div>
+
+
+
+3) MVC
+
+http://code.tutsplus.com/tutorials/5-awesome-angularjs-features--net-25651
+MVC on client web application , (No remote calling) AngularJS does not implement MVC in the traditional sense, but rather something closer to MVVM (Model-View-ViewModel).
+
+Read more: http://mrbool.com/mvc-in-angularjs/28962
+
+Model
+A model in angular can be a primitive type such as string, number, boolean or a complex type such as object.
+
+View
+View is what the users see, in angular view is the Document Object Model (DOM), as a web developer, this fact will make you easier to understand angular view. To display the data from controller, you can put angular expression in your view
+
+Controller
+http://code.tutsplus.com/tutorials/5-awesome-angularjs-features--net-25651
+http://mrbool.com/mvc-in-angularjs/28962
+Speaking the concept of controller under MVC pattern, controller is the place where we put our application logic
+Scope is like a glue between controller and view, you need scope everytime you create a controller
+
+
+function MyCtrl($scope) { // model called ‘greeting’ which is a string $scope.greeting = “Hello, Angular is awesome!”; var users = [ {name: “John Doe”, point: 45 }, {name: “John Nash”, point: 85}, {name: “Johny”, point: 55} ]; // model called ‘user’ which is an array of objects $scope.users = users; }
+
+Controller Example.
+https://docs.angularjs.org/guide/scope
+
+<div ng-controller="MyController">
+  Your name:
+    <input type="text" ng-model="username">
+    <button ng-click='sayHello()'>greet</button>
+  <hr>
+  {{greeting}}
+</div>
+
+angular.module('scopeExample', [])
+  .controller('MyController', ['$scope', function($scope) {
+    $scope.username = 'World';
+
+    $scope.sayHello = function() {
+      $scope.greeting = 'Hello ' + $scope.username + '!';
+    };
+  }]);
+
+4)Depency Injection
+https://docs.angularjs.org/guide/di
+
+
+var myMod = angular.module('myModule', []);
+
+all these pieces of code are doing the exact same thing:
+
+a)myMod.provider('greeting', function() {
+  this.$get = function() {
+    return function(name) {
+      alert("Hello, " + name);
+    };
+  };
+});
+
+b)myMod.factory('greeting', function() {
+  return function(name) {
+    alert("Hello, " + name);
+  };
+});
+
+c)myMod.value('greeting', function(name) {
+  alert("Hello, " + name);
+});
+
+The injector is responsible for actually creating instances of our services using the code we provided via $provide
+
+var greeting = $injector.get('greeting');
+greeting('Ford Prefect');
+
+you can magically inject services into any function you have using the injector's invoke method;
+
+var myFunction = function(greeting) {
+  greeting('Ford Prefect');
+};
+$injector.invoke(myFunction);
+
+So, it stands to reason that you can inject services into any function that is called with $injector.invoke. This includes
+
+controller definition functions
+directive definition functions
+filter definition functions
+the $get methods of providers (aka the factory definition functions)
+
+5) Directives
+At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.
+
+
+
+LO-DASH Utility Libraries
+--------------------------
+http://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
+
+http://lodash.com/docs 
+
+
+Moment.js
+
+http://momentjs.com/docs/
+http://momentjs.com/docs/
+
+JavaScript Testing Framework (Karma)
+------------------------------------
+http://stackoverflow.com/questions/300855/javascript-unit-test-tools-for-tdd 
+A JavaScript test-runner built with Node.js. Made by the Angular team. You can use any assertion-library you want with it.
+
+http://docs.busterjs.org/en/latest/modules/referee/ (assertion/refute)
+
+http://www.jetbrains.com/webstorm/  (IDE)
+
+C:\Program Files (x86)\JetBrains\WebStorm 8.0.4
+
+https://docs.angularjs.org/guide/e2e-testing  
+
+(End to End Testing using PROTRACTOR)
+
+http://ramonvictor.github.io/protractor/slides/#/  
+
+(PROTRACTOR for Angular)
+
+https://github.com/angular/protractor/blob/master/docs/getting-started.md 
+
+(PROTRACTOR for Angular)
+
+http://blog.novanet.no/creating-multilingual-support-using-angularjs/  
+(Multi lingual support)
+http://www.smashingmagazine.com/2010/12/06/using-the-less-css-preprocessor-for-smarter-style-sheets/  
+
+
+(CSS preprocessor)
+
+
+
+MOBILE APP DEVELOPMENT
+----------------------
+
+Node.js has to install for phonegap , karma
+
+
+
+http://www.appcelerator.com/blog/2012/05/comparing-titanium-and-phonegap/ ()
+
+When building for mobile devices you can take one of three approaches: Web apps, Hybrid Apps or Native apps.
+
+
+
+https://github.com/joyent/node/wiki/Building-node.js-on-Cygwin-%28Windows%29
+Installing Node.js
+
+node-v0.6.9.tar.gz 
+
+wget http://nodejs.org/dist/node-v0.6.9.tar.gz
+
+Installation step
+-----------------
+
+Nodejs.
+
+

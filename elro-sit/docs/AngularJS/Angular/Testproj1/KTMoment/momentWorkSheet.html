@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <title>http://momentjs.com/docs ----ISO 8601</title>
+    <script src="angular.js">  </script>
+    <script src="moment.js"> </script>
+
+</head>
+<body>
+
+<div ng-app="momentexample" ng-controller="momentexampleCTRL">
+    hell how are you : <p>  </p>
+    <button ng-click="onClickEvnt()">onClickEvnt</button>
+</div>
+
+<script>
+    angular.module('momentexample', [])
+            .controller('momentexampleCTRL', ['$scope', function($scope) {
+                $scope.personName = "not entered";
+                $scope.onClickEvnt = function (){
+                    //$scope.personName ="MGO TEAM"
+                    //alert ("MOMENT");
+
+                    //initializing moment object and adding and subtracting dates
+
+                    var today = moment();
+                    //alert (today);
+                    //console.log (today);
+                    var yesterday = moment().subtract(1, 'day');
+                    //alert (yesterday);
+                    var tomorrow = moment().add(1, 'day');
+                    //alert (tomorrow);
+                    //console.log (moment.max(a, b));  // b
+                    //alert (moment.max(yesterday, tomorrow));
+
+
+                   // EXTRACT DETAILS FROM MOMENT OBJECT AND MANIPULATE
+
+                   // alert (today.add(7,'days'));
+                   //alert (moment().add(7, 'd')); // using short keys like 'd'
+
+                    //other set of short keys
+
+                  /*  years	y
+                    months	M
+                    weeks	w
+                    days	d
+                    hours	h
+                    minutes	m
+                    seconds	s
+                    milliseconds	ms*/
+
+
+
+
+
+
+
+                    //alert (today.subtract (1,'months'));
+                    //alert (today.year());
+                    //alert (today.month());
+                    //alert (today.days());
+                    //alert (today.hour());
+                    //alert (today.minute());
+                    //alert (today.second());
+
+
+
+
+                    /*If the day of the month on the original
+                    date is greater than the number of days in the final month,
+                    the day of the month will change to the last day in the final month.*/
+
+                    //alert (moment([2010, 0, 31]));                  // January 31
+                    //alert (moment([2010, 0, 31]).add(1, 'months')); // February 28
+
+                    /*There are also special considerations to keep in mind when adding time that crosses over\
+                    Daylight Savings Time. If you are adding years, months, weeks, or days, the original hour
+                    will always match the added hour.*/
+
+                    var beforeDaylight = moment(new Date(2011, 2, 12, 5, 0, 0)); // the day before DST in the US
+                    //alert (beforeDaylight.hours()); // 5
+                    //alert (beforeDaylight.add(1, 'days').hours()); // 5
+
+                    /*If you are adding hours, minutes, seconds,
+                    or milliseconds, the assumption is that you want precision to the hour, and will result
+                    in a different hour*/
+
+                    var dayLightSavingPricise = moment(new Date(2011, 2, 12, 5, 0, 0)); // the day before DST in the US
+                    //alert (dayLightSavingPricise.hours()); // 5
+                    //alert (dayLightSavingPricise.add(24, 'hours').hours()); // 6
+
+
+                    //Duration () add days
+                    var durationExample = moment.duration({'days' : 1});
+                    //alert (moment([2012, 0, 31]).add(durationExample)); // February 1
+
+
+                    //START OF TIME  mehthod
+
+                    //alert (moment().startOf('year'));    // set to January 1st, 12:00 am this year
+                    //alert (moment().startOf('month'));   // set to the first of this month, 12:00 am
+            //alert (moment().startOf('quarter'));  // set to the beginning of the current quarter, 1st day of months, 12:00 am
+                    //alert (moment().startOf('week'));    // set to the first day of this week, 12:00 am
+                    //alert (moment().startOf('isoWeek')); // set to the first day of this week according to ISO 8601, 12:00 am
+                    //alert (moment().startOf('day'));     // set to 12:00 am today
+                    //alert (moment().startOf('hour'));    // set to now, but with 0 mins, 0 secs, and 0 ms
+                    //alert (moment().startOf('minute'));  // set to now, but with 0 seconds and 0 milliseconds
+                    //alert (moment().startOf('second'));  // same as moment().milliseconds(0);
+
+
+                    //END OF TIME
+                    //alert (moment().endOf("year"));
+
+
+                     //MAXIMUM
+
+                    //a.max(b) is the same as a = moment.min(a, b)
+
+                    //alert (moment().max(moment().add(1, 'd')));
+                    //alert (moment().max("2013-04-20T20:00:00+0800"));
+                    //alert (moment().max("Jan 1 2001", "MMM D YYYY"));
+                    //alert (moment().max(new Date(2012, 1, 8)));
+
+                    //MINIMUM
+                    //a.min(b) is the same as a = moment.max(a, b)
+
+                    //alert  (moment().min("2013-04-20T20:00:00+0800"));
+
+
+
+                  //LOCAL
+                  //alert( (moment().local()));
+                  //console.log( (moment().local())); //Sets a flag on the original moment to internally use Date#get* and Date#set* instead of Date#getUTC* and Date#setUTC*.
+                  //console.log (moment().utc());      //Sets a flag on the original moment to internally use Date#getUTC* and Date#setUTC* instead of Date#get* and Date#set*.
+
+                    //Timezone Offset
+                    //http://en.wikipedia.org/wiki/Time_zone
+
+                    //A time offset is an amount of time subtracted from or added to UTC to get the current civil time
+                     //alert (moment().zone()); //CDT is has the offset of 300 minutes.
+                    //creating timezone offset , If the input is less than 16 and greater than -16, it will interpret your input as hours instead.
+                    //moment().zone(120);
+                    //will search the string for the first match of +00:00 +0000 -00:00 -0000, below zone will identified on basis -08:00
+                    //moment().zone("2013-03-07T07:00:00-08:00");
+
+                    //DISPLAY
+
+
+                    //format
+
+                    //alert (moment().format());                                // "2014-09-08T08:02:17-05:00" (ISO 8601)
+                    //alert (moment().format("dddd, MMMM Do YYYY, h:mm:ss a")); // "Sunday, February 14th 2010, 3:25:50 pm"
+                    //alert (moment().format("ddd, hA"));                       // "Sun, 3PM"
+                    //alert (moment('gibberish').format('YYYY MM DD'));         // "Invalid date"
+
+                    //Localized formats
+
+                    //alert (moment().format("L")); //US format
+                    //alert (moment().format("l")); //india format
+
+                    //To escape characters in format strings, you can wrap the characters in square brackets
+                    //alert (moment().format('[today] dddd'));//today friday
+
+                    //TIME FROM NOW
+                    //alert (moment([2007, 0, 29]).fromNow());
+                    //alert (moment([2007, 0, 29]).fromNow(true));
+
+
+                    /*var a = moment([2007, 0, 28]);
+                    var b = moment([2007, 0, 29]);
+                    alert (a.from(b));                     // "a day ago"
+                    alert (a.from([2007, 0, 29]));         // "a day ago"
+                    alert (a.from(new Date(2007, 0, 29))); // "a day ago"
+                    alert (a.from("2007-01-29"));          // "a day ago*/
+
+                    /*var start = moment([2007, 0, 5]);
+                    var end   = moment([2007, 0, 10]);
+                    end.from(start);       // "in 5 days"
+                    end.from(start, true); // "5 days"*/
+
+
+                    //alert (moment().calendar());
+
+                    //DIFFERENCE
+
+                    /*var a = moment([2007, 0, 29]);
+                    var b = moment([2007, 0, 28]);
+                    alert (a.diff(b))*/ // 86400000 difference in millisecond
+                    /*var a = moment([2007, 0, 29]);
+                    var b = moment([2007, 0, 28]);
+                    alert (a.diff(b, 'days'));*/ // 1
+
+                    //Unix Epoch is the number of seconds that have elapsed since January 1, 1970
+                    //Unix time stamp example -  1412779375 is equivalent to (ISO 8601:2014-10-08T14:42:55Z)
+
+                    //value of () simply outputs the number of milliseconds since the Unix Epoch
+                    //alert (moment(1318874398806).valueOf()); // 1318874398806
+                    //Displaying UNIX timestamp
+
+                    //alert (moment().unix()); //outputs a Unix timestamp (the number of seconds since the Unix Epoch).
+
+
+
+                    //Days in month
+                    //alert (moment("2012-02", "YYYY-MM").daysInMonth()); // 29
+                    //alert (moment("2012-01", "YYYY-MM").daysInMonth()); // 31
+
+                    //As java script Date object
+                    //alert (moment().toDate());
+
+                    //As Array
+                    //alert (moment().toArray());
+
+                    //As JSON
+                   /* alert (
+
+                            JSON.stringify({
+                                postDate : moment()
+                            })
+
+                    );*/
+
+                    //As ISO 8601 STRING
+                    //alert (moment().toISOString());
+
+                    //QUERY
+
+                    //isBefore function
+                    //alert (moment('2010-10-20').isBefore('2010-10-21')); // true
+
+                    //alert (moment('2010-10-20').isBefore('2010-12-31', 'year')); // false
+                    //alert (moment('2010-10-20').isBefore('2011-01-01', 'year')); // true
+
+                    //isSame function
+                    //alert (moment('2010-10-20').isSame('2010-10-20')); // true
+                    //alert (moment('2010-10-20').isSame('2009-12-31', 'year')); // false
+                    //alert (moment('2010-10-20').isSame('2010-01-01', 'year')); // true
+                    //alert (moment('2010-10-20').isSame('2010-12-31', 'year')); // true
+                    //alert (moment('2010-10-20').isSame('2011-01-01', 'year')); // false
+
+                    //Is After
+                   // alert (moment('2010-10-20').isAfter('2010-10-19')); // true
+                   // alert (moment('2010-10-20').isAfter('2010-01-01', 'year')); // false
+                   // alert (moment('2010-10-20').isAfter('2009-12-31', 'year')); // true
+
+                    //Is Leap year
+
+                    //alert(moment([2000]).isLeapYear()); // true
+                    //alert(moment([2001]).isLeapYear()); // false
+                    //alert(moment([2100]).isLeapYear()); // false
+
+                     //Is Day Light Saving Time (DST)
+                    //alert (moment([2011, 2, 12]).isDST()); // false, March 12 2011 is not DST
+                    //alert (moment([2011, 2, 14]).isDST()); // true, March 14 2011 is DST
+
+                    //iS DST shifted
+                    //alert (moment('2013-03-10 2:30', 'YYYY-MM-DD HH:mm').isDSTShifted());//false
+                    // This is because daylight savings time shifts the time from 2:00 to 3:00,
+                    // so 2:30 isn't a real time. The resulting time is browser-dependent, either adjusting the time forward or backwards
+                    //At the time of java script execution , the specified time was invalid.
+
+
+                    //Is moment
+                    //To check if a variable is a moment object, use moment.isMoment()
+                    //alert(moment.isMoment()); // false
+                    //alert(moment.isMoment(new Date())); // false
+                    //alert(moment.isMoment(moment())); // true
+
+                     // i18n
+
+                    /*By default, Moment.js comes with English locale strings.
+                    If you need other locales, you can load them into Moment.js for later use.
+                    To load a locale, pass the key and the string values to moment.locale.*/
+
+              /*      moment.locale('fr', {
+                        months : "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
+                        monthsShort : "janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.".split("_"),
+                        weekdays : "dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi".split("_"),
+                        weekdaysShort : "dim._lun._mar._mer._jeu._ven._sam.".split("_"),
+                        weekdaysMin : "Di_Lu_Ma_Me_Je_Ve_Sa".split("_"),
+                        longDateFormat : {
+                            LT : "HH:mm",
+                            L : "DD/MM/YYYY",
+                            LL : "D MMMM YYYY",
+                            LLL : "D MMMM YYYY LT",
+                            LLLL : "dddd D MMMM YYYY LT"
+                        },
+                        calendar : {
+                            sameDay: "[Aujourd'hui à] LT",
+                            nextDay: '[Demain à] LT',
+                            nextWeek: 'dddd [à] LT',
+                            lastDay: '[Hier à] LT',
+                            lastWeek: 'dddd [dernier à] LT',
+                            sameElse: 'L'
+                        },
+                        relativeTime : {
+                            future : "dans %s",
+                            past : "il y a %s",
+                            s : "quelques secondes",
+                            m : "une minute",
+                            mm : "%d minutes",
+                            h : "une heure",
+                            hh : "%d heures",
+                            d : "un jour",
+                            dd : "%d jours",
+                            M : "un mois",
+                            MM : "%d mois",
+                            y : "une année",
+                            yy : "%d années"
+                        },
+                        ordinal : function (number) {
+                            return number + (number === 1 ? 'er' : 'ème');
+                        },
+                        week : {
+                            dow : 1, // Monday is the first day of the week.
+                            doy : 4  // The week that contains Jan 4th is the first week of the year.
+                        }
+                    });*/
+
+
+     //Locale French definition ends
+
+                   /* moment.locale('fr');
+                    alert (moment(1316116057189).fromNow()) // il y a une heure
+                    moment.locale('en');
+                    alert (moment(1316116057189).fromNow())// an hour ago
+                    alert (moment.months());
+                    alert (moment.monthsShort());
+                    alert (moment.weekdays());
+                    alert (moment.weekdaysShort());
+                    alert (moment.weekdaysMin());*/
+
+
+                    //http://viralpatel.net/blogs/java-locale-list-tutorial/ all locale codes in java
+
+
+                    //Changing locales locally
+                   // moment.locale('en'); //this is the default settings
+
+                    //Loading Locales from Browser
+                    //Loading locales in the browser just requires you to include the locale files.
+                    //check the psedo code after the script closing tag
+
+
+                    //CUSTOMIZE
+
+                    //Week days abbreviations
+
+                    /*moment.locale('en', {
+                        weekdaysMin : ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+                    });*/
+
+                    //alert (moment.weekdaysMin ());
+
+                    //Month abbreviations
+                    /*moment.locale('en', {
+                        monthsShort : [
+                            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                        ]
+                    });*/
+
+                    //alert (moment.monthsShort ());
+
+
+
+                   /* moment.lang('en', {
+                        longDateFormat : {
+                            LT: "h:mm A",
+                            L: "MM/DD/YYYY",
+                            LL: "MMMM Do YYYY",
+                            LLL: "MMMM Do YYYY LT",
+                            LLLL: "dddd, MMMM Do YYYY LT"
+                        }
+                    });
+
+                    alert (moment.longDateFormat('L'));*/ //Not working need to check
+
+
+
+                    //DURATIONS
+
+
+
+                    /*moment.duration(2, 'seconds');
+                    moment.duration(2, 'minutes');
+                    moment.duration(2, 'hours');
+                    moment.duration(2, 'days');
+                    moment.duration(2, 'weeks');
+                    moment.duration(2, 'months');
+                    moment.duration(2, 'years');*/
+
+                       //Humanize ()
+                    //alert (moment.duration(1, "minutes").humanize()); // a minute
+                    //alert (moment.duration(2, "minutes").humanize()); // 2 minutes
+                    //alert (moment.duration(24, "hours").humanize());  // a day
+
+
+                    // Argument to duration is in millisecond
+
+                    /*moment.duration(500).asSeconds(); // 0.5
+                    moment.duration(1500).asSeconds(); // 1.5
+                    moment.duration(15000).asSeconds(); // 15
+
+                    moment.duration().asMinutes();
+                    moment.duration().asHours();
+                    moment.duration().asDays();
+                    moment.duration().asMonths();
+                    moment.duration().asYears();*/
+
+
+
+                    //Add Time
+
+                /*    var a = moment.duration(1, 'd');
+                    var b = moment.duration(2, 'd');
+                    alert (a.add(b).days()); // 3*/
+
+                    // Subtract time
+
+                    /*var a = moment.duration(3, 'd');
+                    var b = moment.duration(2, 'd');
+                    alert (a.subtract(b).days()); // 1*/
+
+
+                    //UTILITIES
+                    //var m = moment();
+                    //alert (m.get('y'));
+                    //alert (m.get('year'));
+                    //alert (m.get('years'));
+
+
+                    //PLUGINS
+
+                    //alert (moment().isocalendar());
+
+                    //ISAAC'S twix library  for range related features
+                    //npm install twix or download from http://isaaccambron.com/twix.js/
+
+                    /*var t = moment("1/25/1982 9:30 AM").twix("1/25/1982 1:30 PM");
+                    alert (t.isCurrent()); // false
+                    alert(t.count('minutes')); // 241
+                    alert (t.format());  // 'Jan 25, 1982, 9:30 AM - 1:30 PM'
+                    alert (t.simpleFormat("h:m")); // '9:30 - 1:30'*/
+
+                    //twiter plugin to display date format as in twitter blogs format
+                    //Download the plugin from https://github.com/hijonathan/moment.twitter
+
+                    //moment().subtract(5, 'hours').twitter();
+                    // 5 hours
+
+                    //Jalalli's Calendar
+                    //Download from  github.com/behrang/moment-jalaali.
+
+                   /* var m = moment('1360/5/26', 'jYYYY/jM/jD'); // Parse a Jalaali date.
+                    m.format('jYYYY/jM/jD [is] YYYY/M/D'); // 1360/5/26 is 1981/8/17*/
+
+                    //MS DATA - playing with OLE Automation dates in .NET
+                    //http://markitondemand.github.io/moment-msdate/.
+                   // moment().toOADate();
+
+                    //Fiscal Quarters
+                    //It returns a formatted string with April being the first quarter.
+                       //moment("2013-01-01").fquarter(); // Q4 2012/13
+                    //https://github.com/robgallen/moment-fquarter
+
+                    //Precise Range
+                    //http://codebox.org.uk/pages/moment-date-range-plugin
+                    //moment("2014-01-01 12:00:00").preciseDiff("2015-03-04 16:05:06");
+                    // 1 year 2 months 3 days 4 hours 5 minutes 6 seconds
+
+                     //Java Data Format parser -- If you want to work with the java.text.DateFormat you can use this plugin.
+                    //npm install moment-jdateformatparser
+                    //https://github.com/MadMG/moment-jdateformatparser
+
+
+
+
+                    //PARSE
+
+                    //GET
+                    /*alert (moment().get('year'));
+                    alert (moment().get('month'));  // 0 to 11
+                    alert (moment().get('date'));
+                    alert (moment().get('hour'));
+                    alert (moment().get('minute'));
+                    alert (moment().get('second'));
+                    alert (moment().get('millisecond'));*/
+
+                    //SET
+                   /* alert (moment().set('year', 2013));
+                    alert (moment().set('month', 3));  // April
+                    alert (moment().set('date', 1));
+                    alert (moment().set('hour', 13));
+                    alert (moment().set('minute', 20));
+                    alert (moment().set('second', 30));
+                    alert (moment().set('millisecond', 123));*/
+
+
+                    //MAXIMUM
+
+                    /*var a = moment().subtract(1, 'day');
+                    var b = moment().add(1, 'day');
+                    alert (moment.max(a, b));  // b*/
+
+                    //MINIMUM
+                   /* var a = moment().subtract(1, 'day');
+                    var b = moment().add(1, 'day');
+                    alert (moment.min(a, b));  // a*/
+
+                    // MOMENT INITIALIZING
+
+                    //var now = moment();
+                    //var day = moment("1995-12-25"); //If you use this style parsing of string will be inconsistant across browser
+                    // so strongly recommended to use "String+format" way of initializing
+                    //moment("12-25-1995", "MM-DD-YYYY");
+                    //moment("12\25\1995", "MM-DD-YYYY");
+                    //Unless you specify a timezone offset, parsing a string will create a date in the current timezone
+                    //moment("2010-10-20 4:30",       "YYYY-MM-DD HH:mm");   // parsed as 4:30 local time
+                    //moment("2010-10-20 4:30 +0000", "YYYY-MM-DD HH:mm Z"); // parsed as 4:30 UTC
+                    //moment('2012 juillet', 'YYYY MMM', 'fr');
+                    //moment('2012 July',    'YYYY MMM', 'en');
+
+                    //Initializing using json objects
+                    /*moment({ hour:15, minute:10 });
+                    moment({ y    :2010, M     :3, d   :5, h    :15, m      :10, s      :3, ms          :123});
+                    moment({ year :2010, month :3, day :5, hour :15, minute :10, second :3, millisecond :123});
+                    moment({ years:2010, months:3, days:5, hours:15, minutes:10, seconds:3, milliseconds:123});*/
+                    //using javascript date
+                    /*var day = new Date(2011, 9, 16);
+                    var dayWrapper = moment(day);*/
+
+                     //Creating moment using Array of numbers
+
+                    //[year, month, day, hour, minute, second, millisecond]
+                    //moment([2010, 1, 14, 15, 25, 50, 125]); // February 14th, 3:25:50.125 PM
+
+                    //Clone
+
+                    /*
+                    var a = moment([2012]);
+                    var b = a.clone();
+                    a.year(2000);
+                    b.year(); // 2012
+                    */
+
+                   /* console.log (moment().format());     // 2013-02-04T10:35:24-08:00 - by default moment displays local time (ISO 8601 format)
+                    console.log(moment.utc().format()); // it displays UTC time not local time*/
+
+                    //PARSE ZONE
+                    //alert (moment.parseZone("2013-01-01T00:00:00-13:00").zone()); // 780
+
+                }
+            }])
+</script>
+
+<!--
+
+    <script>
+    angular.module('formExample', [])
+            .controller('ExampleController', ['$scope', function($scope) {
+
+            }]);
+</script>
+
+-->
+
+
+
+<!--
+loading locale from browser
+<script src="moment.js"></script>
+<script src="locale/fr.js"></script>
+<script src="locale/pt.js"></script>
+<script>
+    moment.locale('fr');  // Set the default/global locale
+    // ...
+</script>-->
+
+</body>
+</html>

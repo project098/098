@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.min.js">
+    </script>
+
+</head>
+<body>
+
+<div ng-app="formExample" ng-controller="buttonCtrl">
+    hell how are you : <p> {{personName}} </p>
+    <button ng-click="onClickEvnt()">onClickEvnt</button>
+</div>
+
+<script>
+    angular.module('formExample', [])
+            .controller('buttonCtrl', ['$scope', function($scope) {
+                $scope.personName = "not entered";
+                $scope.onClickEvnt = function (){
+                    $scope.personName ="MGO TEAM"
+
+                }
+            }])
+</script>
+
+<!--
+
+    <script>
+    angular.module('formExample', [])
+            .controller('ExampleController', ['$scope', function($scope) {
+
+            }]);
+</script>
+
+-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <title>not working in IE</title>
+    <script src="angular.js"></script>
+    <script src="moment.js"> </script>
+    <script src = "http://code.jquery.com/jquery-2.0.3.min.js"> </script>
+
+</head>
+<body>
+
+<script>
+    var exampleModule = angular.module('formExample', [])
+
+
+    exampleModule.controller("myFormCrtrl",['$scope',function($scope){
+        $scope.localDate1 = new Date(2010, 10, 28, 14, 57);
+        //console.log($scope.localDate1)
+        $scope.texturl = "http://m.moneygram.com";
+        $scope.emailtxt = "test@test.com";
+
+    }]);
+
+    exampleModule.controller('buttonCtrl', ['$scope', function($scope) {
+                $scope.personName = "not entered";
+                $scope.onClickEvnt = function (){
+                    alert("hai");
+
+
+
+                    //FUNCTION
+
+
+                    //Determines if two objects or two values are equivalent.
+                    // Supports value types, regular expressions, arrays and objects
+
+                    /*var a = moment([2012]);
+                    var b = a.clone();
+                    alert (angular.equals(a, b));*/
+
+
+                /*Extends the destination object dst by copying own enumerable properties
+                from the src object(s) to dst. You can specify multiple src objects. If you want to preserve original
+                objects, you can do so by passing an empty object as the target: var object = angular.extend({}, object1, object2).*/
+
+                   var srcJson = {
+                        "name": "shameer",
+                        "email": "ssyed@moneygram.com"
+                    }
+
+                    var distJson = {
+                        "name": "ganesh",
+                        "email": "gganesh@moneygram.com"
+                    }
+                    //console.log (angular.extend (distJson,srcJson));
+                   //not working as specified in document
+                    //console.log (angular.extend ({},distJson,srcJson));
+
+
+                    /*var employees =[
+                        {"firstName":"John", "lastName":"Doe"},
+                        {"firstName":"Anna", "lastName":"Smith"},
+                        {"firstName":"Peter", "lastName":"Jones"}
+                    ]*/
+
+                    //itereting through a collectioin
+                   /* var employees =
+                        {"firstName":"John", "lastName":"Doe"}
+
+
+                    angular.forEach (employees,function (value,key){
+                        console.log (key +'-->'+ value);
+                        //IF multiple array use get the vale and key from from each object here
+                    })*/
+
+                    /*angular.forEach([0,1,2], function(count){
+                        if(count == 1){
+                            alert (1);
+                        }
+                    });*/
+
+
+                    //A function that returns its first argument.
+
+                   /* var arrFuncs = [
+                        function(val) { return val * val; },
+                        function(val) { return val + val;},
+                        null,
+                        undefined];
+                    var PARAM = 20;
+
+                    arrFuncs.forEach(function(func){
+                        console.log( (func || angular.identity)(PARAM));
+                    });*/
+
+                    //
+
+                    //angular.injector
+                    //Creates an injector object that can be used for retrieving services as well as for dependency injection
+                    //For Dependency Injection See the file dependencyInjection1.html
+
+                    //Injecting New HTML block containing a "ng-Controller"
+
+                    /*var $div = $('<div ng-controller="injectedCtrl">{{label}}</div>');
+                    $(document.body).append($div);
+
+                    angular.element(document).injector().invoke(function($compile) {
+                        var scope = angular.element($div).scope();
+                        $compile($div)(scope);
+                    });
+
+                    var injectApp = angular.module("testInject",[]);
+
+
+
+                    injectApp.controller('mainCtrl',$scope,function ($scope)
+                            {
+                                $scope.label = "haiMGO";
+                            }
+                    )
+
+                    injectApp.controller ('injectedCtrl',$scope,function ($scope){
+                            $scope.label = "hai MGO Team";
+                            }
+                    )*/
+
+
+
+                   // alert (angular.isArray([1,2,3]));
+                   // alert (angular.isDate(moment())); //Only checking javascript date object
+                    //alert (angular.isDate(new Date('02/02/2012')));
+
+                    //isDefined (value) - Determines if a reference is defined.
+                    /*var a = 10;
+                     alert (angular.isDefined(a)); //if any value is assigned to variable "a" it will display true otherwise false
+                    //isUndefined(value) --Determines if a reference is undefined.
+                    alert (angular.isUndefined(a));*/
+
+
+                    //angular.isElement () Determines if a reference is a DOM element (or wrapped jQuery element).
+                    //uncomment the <div> tag mentioned below - module "testInject"
+                    /*var doucmenteElement = document.getElementById('testID');
+                    alert ( document.getElementById('testID'));
+                    alert (angular.isElement (doucmenteElement));*/
+
+                    //angular.isFunction (value)
+                    //Determines if a reference is a Function
+                 /*   var testFunc = function (){
+
+                    }
+                    alert (angular.isFunction(testFunc));*/
+
+                    //angular.isNumber (value)
+                    //Determines if a reference is a Number.
+                  /*  var testNumber = 10;
+                    alert (angular.isNumber(testNumber));*/
+
+                    //angular.isObject
+                    //Determines if a reference is an Object. Unlike typeof in JavaScript,
+                    // nulls are not considered to be objects. Note that JavaScript arrays are objects.
+
+                    /*var testObject = [
+                        {name:'shameer',gender: 'male'}
+                    ];
+                    alert(angular.isObject(testObject));*/
+
+                    //Angular.isString(value);
+
+
+                    //Angular.lowercase(String)
+                    //alert (angular.lowercase("SHAMEER"));
+
+                    //angular.module ()
+
+                    //Different usage of module
+
+                    // Create a new module
+                    //var myModule = angular.module('myModule', []);
+
+                    // register a new service - corelate with the example of dependencyInjection1.html
+                    //myModule.value('appName', 'MyCoolApp');
+
+                    // configure existing services inside initialization blocks -- refer the example dependencyInjection1.html
+                    /*myModule.config(['$locationProvider', function($locationProvider) {
+                        // Configure existing providers
+                        $locationProvider.hashPrefix('!');
+                    }]);*/
+
+                    //angular.noop()
+                    //A function that performs no operations. This function can be useful when writing code in the functional style.
+                    /*function foo(callback) {
+                        var result = calculateResult();
+                        (callback || angular.noop)(result);
+                    }*/
+
+                    //  angular.toJson (jsonobj,array)Check the fucntion , out put is coming as undefined
+                    /*var objJson;
+                    angular.toJson(objJson, [1,2,3]);
+                    console.log((objJson));
+                    console.log(angular.toJson(objJson, [1,2,3]));*/
+
+
+                    //Angular.uppercase(String)
+                    //alert (angular.uppercase("shameer"));
+
+
+
+                    //DIRECTIVE
+
+                    //<a> -refer ngDirective_Example.html
+                    //ng-form -refer ngDirective_Example_Checkbox.hmtl
+                    //check-box refer ngDirective_Example_Checkbox.hmtl
+
+                    //ng-bind -  see the example dataBinding.html , it is preferably use ng-bind rather than handle bars
+
+
+
+                }
+            }])
+
+
+
+</script>
+
+<script>
+    /*var dateTimeModule = angular.module("formExample",[]);
+    dateTimeModule.controller("dateTimeLocalCrtrl",['$scope',function($scope){
+                $scope.localDate1 = new Date(2010, 11, 28, 14, 57);
+                console.log($scope.localDate1)
+            }]
+    )*/
+</script>
+
+<!--
+    <script>
+    angular.module('formExample', [])
+            .controller('ExampleController', ['$scope', function($scope) {
+            }]);
+</script>
+-->
+
+
+<!--<div ng-controller="mainCtrl" ng-app="testInject">
+    <input type="text" ng-model = 'label' id='testID' value="hi MGO">
+</div>-->
+
+<!--<div ng-app="formExample" ng-controller="buttonCtrl">
+    <button ng-click="onClickEvnt()">onClickEvnt</button>
+</div>-->
+
+<div ng-app="formExample">
+<form name="MyDateform" ng-controller="myFormCrtrl">
+    <!--<input type="datetime-local" ng-model="localDate1" placeholder="yyyy-MM-dd" min="2001-01-01T00:00:00" max="2013-12-31T00:00:00" required>-->
+    URL: <input type="url" ng-model="texturl" required="true">
+    email : <input type="email" ng-model="emailtxt">
+    <p>email text {{emailtxt}}</p>
+
+    <br>
+    <input type="checkbox" ng-model="selected">
+    <br/>
+    <select>
+        <option>Hello!</option>
+        <option id="greet" ng-selected="selected">Greetings!</option>
+    </select>
+
+
+</form>
+
+
+
+<button ng-click="onClickEvnt()" ng-controller="buttonCtrl">onClickEvnt</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

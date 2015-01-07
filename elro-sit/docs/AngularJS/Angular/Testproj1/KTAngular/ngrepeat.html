@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js">
+    </script>
+</head>
+<body>
+
+<div ng-app="" ng-init="names=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+
+    <ul>
+        <li ng-repeat="y in names">
+            {{ y.name + ', ' + y.country }}
+
+        </li>
+    </ul>
+
+</div>
+
+
+
+</body>
+</html>

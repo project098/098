@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myJasminApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> http://www.ng-newsletter.com/advent2013/#!/day/19</title>
+</head>
+<body>
+
+<script>
+    //Reference: http://www.ng-newsletter.com/advent2013/#!/day/19
+    //Controller
+    angular.module('myJasminApp', [])
+            .controller('jasminCtrl', function($scope) {
+                $scope.name = "Ari";
+                $scope.sayHello = function() {
+                    $scope.greeting = "Hello " + $scope.name;
+                }
+            })
+
+</script>
+
+<script>
+
+    //Jasmin with Angular Controller
+
+    describe('Unit: jasminCtrl', function() {
+        // Load the module with MainController
+        beforeEach(module('myJasminApp'));
+
+        var ctrl, scope;
+        // inject the $controller and $rootScope services
+        // in the beforeEach block
+        beforeEach(inject(function($controller, $rootScope) {
+            // Create a new scope that's a child of the $rootScope
+            scope = $rootScope.$new();
+            // Create the controller
+            ctrl = $controller('jasminCtrl', {
+                $scope: scope
+            });
+        }));
+
+        it('should create $scope.greeting when calling sayHello',
+                function() {
+                    expect(scope.greeting).toBeUndefined();
+                    scope.sayHello();
+                    expect(scope.greeting).toEqual("Hello Ari");
+                });
+    })
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="cacheFactoryApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+</head>
+
+
+<body>
+
+
+
+<script>
+    //Refereces --> http://plnkr.co/edit/loKWGms1lMCnmiWa1QA7?p=preview
+    //Refereces ---> https://www.ng-book.com/p/Caching/
+
+
+    var cacheFactoryMod = angular.module('cacheFactoryApp', []);
+
+    cacheFactoryMod.factory( 'cache', function($cacheFactory) {
+        var cache = $cacheFactory('myCache');
+        return cache;
+    });
+
+
+
+
+
+    cacheFactoryMod.controller('MainCtrl', function($scope, cache) {
+        $scope.key = "key";
+        $scope.val = "val";
+
+        $scope.addToCache = function() {
+            cache.put( $scope.key, $scope.val );
+        };
+    });
+
+    cacheFactoryMod.controller('SecondCtrl', function($scope, cache) {
+        $scope.key = "key";
+
+        $scope.getFromCache = function() {
+            $scope.val = cache.get( $scope.key );
+        };
+    });
+
+
+
+
+</script>
+
+
+
+<div ng-controller="MainCtrl">
+    <input ng-model="key" /><input ng-model="val" />
+    <button ng-click="addToCache()">Add to Cache</button>
+</div>
+<div ng-controller="SecondCtrl">
+    <input ng-model="key" />Value: {{val || 'None'}}
+    <button ng-click="getFromCache()">Get From Cache</button>
+</div>
+
+
+</body>
+
+
+</html>

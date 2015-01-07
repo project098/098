@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="customDirApp2">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="angular.js"></script>
+
+</head>
+
+
+<body>
+
+<script>
+
+    /*
+     http://tutorials.jenkov.com/angularjs/custom-directives.html
+     The compile() function sets a border on the HTML element. This is only executed once because the compile()
+     function is only executed once.
+
+     The link() function replaces the content of the HTML element, and sets the background color to yellow.
+
+    */
+
+
+
+
+    var customDirMod2 = angular.module("customDirApp2", []);
+    customDirMod2.directive('userinfo', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+
+        directive.compile = function(element, attributes) {
+            element.css("border", "1px solid #cccccc");
+
+            var linkFunction = function($scope, element, attributes) {
+                element.html("This is the new content: " + $scope.firstName);
+                element.css("background-color", "#ffff00");
+            }
+
+            return linkFunction;
+        }
+
+        return directive;
+    })
+    customDirMod2.controller("MyController", function($scope, $http) {
+        $scope.cssClass = "notificationDiv";
+
+        $scope.firstName = "Jakob";
+
+        $scope.doClick = function() {
+            console.log("doClick() called");
+        }
+    });
+
+
+
+
+/*
+ myapp = angular.module("myapp", []);
+ myapp.directive('userinfo', function() {
+ var directive = {};
+
+ directive.restrict = 'E';
+
+    directive.link = function($scope, element, attributes) {
+        element.html("This is the new content: " + $scope.firstName);
+        element.css("background-color", "#ffff00");
+    }
+
+    return directive;
+    }) */
+
+
+</script>
+
+<div ng-controller="MyController" >
+    <userinfo >This will be replaced</userinfo>
+</div>
+
+
+<!--    setting only link () function
+
+<div ng-controller="MyController" >
+    <userinfo >This will be replaced</userinfo>
+</div>
+
+    <script>
+
+    Sometimes you do not need the compile() step for your directive. You only need th link() function.
+    In that case you can set the link() function directly on the directive definition object. Here is the example from before, with only a link function:
+
+    myapp = angular.module("myapp", []);
+    myapp.directive('userinfo', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+
+        directive.link = function($scope, element, attributes) {
+            element.html("This is the new content: " + $scope.firstName);
+            element.css("background-color", "#ffff00");
+        }
+
+        return directive;
+    })
+    myapp.controller("MyController", function($scope, $http) {
+        $scope.cssClass = "notificationDiv";
+
+        $scope.firstName = "Jakob";
+
+        $scope.doClick = function() {
+            console.log("doClick() called");
+        }
+    });
+</script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

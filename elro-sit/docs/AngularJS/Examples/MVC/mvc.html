@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<title>Welcome to AngularJS</title> </head> <body>
+
+<body>
+<div ng-controller="MyCtrl">
+	<h1>{{greeting}}</h1>
+	<ol>
+		<li ng-repeat=user in users>{{user.name}} - {{user.point}}</li>
+	</ol>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script>
+	function MyCtrl($scope)
+	{ // model called ‘greeting’ which is a string $scope.greeting = "Hello, Angular is awesome!";
+	var users = [ {name: "John Doe", point: 45 }, {name: "John Nash", point: 85}, {name: "Johny", point: 55} ];
+	// model called ‘user’ which is an array of objects $scope.users = users; }
+</script>
+</body>
+</html>

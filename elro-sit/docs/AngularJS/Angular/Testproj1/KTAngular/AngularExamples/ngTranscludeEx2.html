@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myTranscludeApp1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+
+
+<script>
+    //transclude is for building custom tag definition.
+
+    myTranscludeMod = angular.module("myTranscludeApp1", []);
+    myTranscludeMod.directive('mytransclude', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+        directive.transclude = true;
+        directive.template = "<div class='myTransclude' ng-transclude></div>";
+
+        return directive;
+    });
+    myTranscludeMod.controller("transcludeCtrl", function($scope, $http) {
+        $scope.firstName = "Jakob";
+    });
+</script>
+
+
+<div ng-controller="transcludeCtrl">
+<mytransclude>This is a transcluded directive {{firstName}}</mytransclude>
+</div>
+
+</body>
+
+
+</html>
