@@ -1,0 +1,45 @@
+.status {
+    padding: 5px;
+    margin: 5px;
+    border-width: 1px;
+    border-style: solid;
+}
+.error {
+    color: Red;
+    border-color: Maroon;
+}
+.information {
+    color: black;
+}
+.headingbox {
+    float: left;
+    text-align: center;
+    padding:15px;
+    width:  600px;
+    height: 150px;
+    border: 2px solid black;
+
+}
+
+.leftpadding {
+    margin-left: 5%;
+}
+.rightpadding {
+    margin-right: 150px;
+}
+
+h2 #orgHeading {
+    color: darkturquoise;
+    text-align: center;
+}
+/*
+width:  600px;
+height: 150px;
+border: 2px solid black;*/
+
+
+/*h1,h2,h3#orgHeading {
+    color: darkturquoise;
+    padding: 5%;
+}*/
+
