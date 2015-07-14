@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<!-- Declaring BaseController at the root causes all controllers initialized within the body to inherit from BaseController -->
+<html lang="en" ng-controller="baseController">
+<head>
+    <title>Slalom Angular Large Project</title>
+    <!-- Not sure whether it is a good idea to have css in code directories.-->
+    <link href="scripts/core/assets/css/core.css" rel="stylesheet" />
+    <link href="scripts/core/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <!-- Application nav header directive -->
+        <core-navigation></core-navigation>
+
+        <!-- Main view content area -->
+        <ui-view></ui-view>
+    </div>
+    <script data-main="/scripts/init" src="scripts/core/libraries/require.js"></script>
+</body>
+</html>
