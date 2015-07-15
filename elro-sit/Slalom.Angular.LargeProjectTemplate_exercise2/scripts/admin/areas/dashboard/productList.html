@@ -1,0 +1,73 @@
+﻿
+
+
+<div>
+    <h1>Lens Mart Products</h1>
+    <!--<h3>{{description}}</h3>-->
+    <!--<div ng-repeat="productOwner in productOwners">
+        {{productOwner.name}}
+    </div>-->
+
+
+    <div>
+
+
+    </div>
+    <ul class="inline">
+        <li>
+            <div class="alert alert-info">
+                Search : <input type="text" ng-model="searchText" />
+            </div>
+        </li>
+        <li>
+            <div class="btn-group" ng-class="{open: open}">
+                <button class="btn">Filter by Category</button>
+                <button class="btn dropdown-toggle" ng-click="open=!open"><span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                        <li ng-repeat="product in products | unique :'category'"><input type="checkbox" />{{product.category}} </li>
+                    </ul>
+            </div>
+        </li>
+    </ul>
+
+        <h3>Product List:</h3>
+
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th style="width:10%">#</th>
+                <th style="width:10%">
+                    Category
+                </th>
+                <th style="width:10%">Brands</th>
+                <th style="width:10%">
+                    <a href="" ng-click="order('price')">Price ^</a>
+                </th>
+                <th style="width:20%">Image</th>
+                <th style="width:20%">In Cart : {{totalincart}} : Check Out</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in products | filter:searchText | orderBy:predicate:reverse ">
+                <td>{{product.productID}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.brand}}</td>
+
+                </td>
+                <td>{{product.price}}</td>
+                <td><img src="{{product.imgsrc}}"></td>
+                <td>
+                <div class="checkbox">
+                    <label>Add<input type="checkbox" ng-click="addedItems (product.productID)"    id="{{product.productID}}"></label>
+                </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

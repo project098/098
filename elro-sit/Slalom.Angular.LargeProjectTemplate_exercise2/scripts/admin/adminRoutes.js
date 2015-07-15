@@ -12,11 +12,11 @@ define([], function () {
             {
                 name: "admin",
                 url: "/admin",
-                templateUrl: "/scripts/admin/areas/dashboard/scrum.html",
-                controller: "productOwnerScrumController",
+                templateUrl: "/scripts/admin/areas/dashboard/productList.html",
+                controller: "productListController",
                 dependencies: [
-                    "admin/areas/dashboard/scrumController",
-                    "admin/areas/dashboard/productOwnerListController"
+                    //"admin/areas/dashboard/scrumController",
+                    "admin/areas/dashboard/productListController"
                 ]
             }
 
