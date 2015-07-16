@@ -37,31 +37,25 @@
             <thead>
             <tr>
                 <th style="width:10%">#</th>
-                <th style="width:10%">
-                    Category
-                </th>
                 <th style="width:10%">Brands</th>
                 <th style="width:10%">
                     <a href="" ng-click="order('price')">Price ^</a>
                 </th>
                 <th style="width:20%">Image</th>
-                <th style="width:20%">In Cart : {{totalincart}} : Check Out</th>
-
+                <th style="width:20%">In Cart : {{totalincart}} : <button ng-click="changeState()">Check Out</button></th>
 
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="product in products | filter:searchText | orderBy:predicate:reverse ">
                 <td>{{product.productID}}</td>
-                <td>{{product.category}}</td>
                 <td>{{product.brand}}</td>
-
                 </td>
                 <td>{{product.price}}</td>
                 <td><img src="{{product.imgsrc}}"></td>
                 <td>
                 <div class="checkbox">
-                    <label>Add<input type="checkbox" ng-click="addedItems (product.productID)"    id="{{product.productID}}"></label>
+                    <label>Add<input type="checkbox" ng-model="isSelected" ng-change="addedItems (isSelected,product.productID)"></label>
                 </div>
                 </td>
             </tr>

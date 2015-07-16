@@ -1,9 +1,9 @@
 /**
  * Created by shameersyed on 7/10/15.
  */
-define (["admin/adminModule","admin/shared/productListService"],function(){
+define (["product/productModule","product/shared/productListService"],function(){
      "use strict" ;
-    angular.module("application").controller("productListController",function ($scope,productListService) {
+    angular.module("product").controller("productListController",function ($scope,productListService,$state) {
         //alert ("hai");
         $scope.predicate = 'price';
         $scope.reverse = true;
@@ -11,10 +11,20 @@ define (["admin/adminModule","admin/shared/productListService"],function(){
             $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
             $scope.predicate = predicate;
         };
-        $scope.totalincart = 0
-        $scope.addedItems =  function (item){
-            $scope.totalincart++;
+        $scope.totalincart = 0;
+        $scope.productInCart = []
+        $scope.addedItems =  function (isSelected,item){
+            if (isSelected) {
+                $scope.totalincart++;
+                $scope.productInCart.push(item);
+            }
+            else {
+                $scope.totalincart--;
+            }
+        }
 
+        $scope.changeState = function (){
+            $state.go("productCheckOut");
         }
 
         function init (){
@@ -24,10 +34,11 @@ define (["admin/adminModule","admin/shared/productListService"],function(){
         init ();
     });
 
-    angular.module("admin").filter('unique', function() {
+    angular.module("product").filter('unique', function() {
         return function (products, product) {
             return _.uniq(products, function(a) { return a[product]; });
         };
     });
+
 
 });

@@ -69,7 +69,7 @@
      * @module coreModule
      * @class init
      */
-    require(["Angular", "AngularResource", "AngularCookies", "AngularUiRouter", "SlalomAngularUtilities", "Underscore", "Bootstrap", "core/coreModule", "application/applicationModule", "admin/adminModule"], function () {
+    require(["Angular", "AngularResource", "AngularCookies", "AngularUiRouter", "SlalomAngularUtilities", "Underscore", "Bootstrap", "core/coreModule", "application/applicationModule", "product/productModule"], function () {
         // Load the application prerequisites
         // NOTE: The baseController and coreNavigationDiretive are required here because
         //       they are loaded before the module bootstrap has completed.

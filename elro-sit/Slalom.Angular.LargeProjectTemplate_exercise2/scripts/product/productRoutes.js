@@ -10,13 +10,24 @@ define([], function () {
         // defaultRoutePath: "/",
         states: [
             {
-                name: "admin",
-                url: "/admin",
-                templateUrl: "/scripts/admin/areas/dashboard/productList.html",
+                name: "product",
+                url: "/product",
+                templateUrl: "/scripts/product/areas/productList/productList.html",
                 controller: "productListController",
                 dependencies: [
                     //"admin/areas/dashboard/scrumController",
-                    "admin/areas/dashboard/productListController"
+                    "product/areas/productList/productListController"
+                ]
+            },
+
+            {
+                name: "productCheckOut",
+                url: "/product/productCheckOut",
+                templateUrl: "/scripts/product/areas/productCheckOut/productCheckOut.html",
+                controller: "productCheckOutController",
+                dependencies: [
+                    //"admin/areas/dashboard/scrumController",
+                    "product/areas/productCheckOut/productCheckOutController"
                 ]
             }
 
