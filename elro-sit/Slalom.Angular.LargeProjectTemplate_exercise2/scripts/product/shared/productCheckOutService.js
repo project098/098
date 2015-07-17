@@ -14,6 +14,21 @@ define (["product/productModule"],function () {
          {name:"mole",age:23}
          ]*/
 
+
+  /*  var productsInCart=[];
+
+
+        return {
+            getProperty: function () {
+                return productsInCart;
+            },
+            setProperty: function (value) {
+                productsInCart = value;
+            }
+
+        };*/
+
+
         var products = [
 
             {productID:"1",category:"Driving Sunglassess",brand:"VENT",price:"75",
@@ -31,15 +46,16 @@ define (["product/productModule"],function () {
          return productOwners;
          }*/
 
-        function getProducts () {
+      /*  function getProducts () {
             return products;
         }
 
         var service = {
             //getProductOwners:getProductOwners,
-            getProducts:getProducts
+            getProducts:getProducts,
+            getProductInCart:getProductInCart
         }
-        return service;
+        return service;*/
     })
 })
 

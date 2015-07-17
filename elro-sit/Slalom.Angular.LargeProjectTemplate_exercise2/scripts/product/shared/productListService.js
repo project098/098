@@ -9,9 +9,9 @@ define (["application/applicationModule"],function () {
                 {name:"shameer",age:54},
                 {name:"mole",age:23}
             ]*/
+            var productsInCart= [];
 
             var products = [
-
                 {productID:"1",category:"Driving Sunglassess",brand:"VENT",price:"75",
                     imgsrc:"/scripts/core/assets/img/img1.png"},
                 {productID:"2",category:"Safety Goggles",brand:"Sigma",price:"35",imgsrc:"/scripts/core/assets/img/img2.png"},
@@ -20,20 +20,49 @@ define (["application/applicationModule"],function () {
                 {productID:"5",category:"Contact Lens",brand:"VENT",price:"90",imgsrc:"/scripts/core/assets/img/img5.png" },
                 {productID:"6",category:"Driving Sunglassess",brand:"VENT",price:"75",imgsrc:"/scripts/core/assets/img/img6.png" },
                 {productID:"7",category:"Driving Sunglassess",brand:"VENT",price:"75",imgsrc:"/scripts/core/assets/img/img2.png" }
-
             ]
+
+            function setProductsInCart (item){
+                alert ("adding to cart--- >"+ item);
+                productsInCart.push(item);
+            }
+            function getProductInCart () {
+                return productsInCart;
+            }
+            function getProducts () {
+             return products;
+             }
+
+            //var productsInCart=[];
+
+           /* return {
+                getProductInCart: function () {
+                    return productsInCart;
+                },
+                setProductsInCart: function (value) {
+                    productsInCart = value;
+                },
+                getProducts : function getProducts () {
+                return products;
+            }
+
+            };*/
+
+
 
             /*function getProductOwners () {
                 return productOwners;
             }*/
 
-            function getProducts () {
-                return products;
-            }
+
 
             var service = {
                 //getProductOwners:getProductOwners,
-                getProducts:getProducts
+                getProducts:getProducts,
+                setProductsInCart:setProductsInCart,
+                getProductInCart:getProductInCart
+                //getProductInCart:getProductInCart
+
             }
             return service;
         })

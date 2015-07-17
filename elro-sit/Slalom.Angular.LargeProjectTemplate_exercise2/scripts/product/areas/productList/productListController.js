@@ -3,8 +3,11 @@
  */
 define (["product/productModule","product/shared/productListService"],function(){
      "use strict" ;
+
+
     angular.module("product").controller("productListController",function ($scope,productListService,$state) {
         //alert ("hai");
+        //"product/shared/productCheckOutService"
         $scope.predicate = 'price';
         $scope.reverse = true;
         $scope.order = function(predicate) {
@@ -12,11 +15,17 @@ define (["product/productModule","product/shared/productListService"],function()
             $scope.predicate = predicate;
         };
         $scope.totalincart = 0;
-        $scope.productInCart = []
+        $scope.productInCart = [];
         $scope.addedItems =  function (isSelected,item){
+            alert ("in add items--> "+ isSelected);
             if (isSelected) {
+
+                alert ("inside select items array");
                 $scope.totalincart++;
                 $scope.productInCart.push(item);
+                //productCheckOutService.setProperty(item);
+                productListService.setProductsInCart(item);
+                //alert ("in check out ctrl--> "+$scope.productInCart[1]);
             }
             else {
                 $scope.totalincart--;
@@ -30,6 +39,10 @@ define (["product/productModule","product/shared/productListService"],function()
         function init (){
             //$scope.productOwners = productOwnerListService.getProductOwners();
             $scope.products = productListService.getProducts();
+            //productListService.setproductsInCart ($scope.productInCart);
+           // productCheckOutService.setProperty(item);
+
+
         }
         init ();
     });
