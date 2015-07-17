@@ -3,66 +3,54 @@
  */
 
 define (["application/applicationModule"],function () {
-        angular.module("application").service("productListService",function (){
-            //alert ("inside service");
-            /*var productOwners = [
-                {name:"shameer",age:54},
-                {name:"mole",age:23}
-            ]*/
+        angular.module("application").service("productListService",function ($q, $http){
             var productsInCart= [];
-
-            var products = [
-                {productID:"1",category:"Driving Sunglassess",brand:"VENT",price:"75",
-                    imgsrc:"/scripts/core/assets/img/img1.png"},
-                {productID:"2",category:"Safety Goggles",brand:"Sigma",price:"35",imgsrc:"/scripts/core/assets/img/img2.png"},
-                {productID:"3",category:"Driving Sunglassess",brand:"VENT",price:"275",imgsrc:"/scripts/core/assets/img/img3.png"},
-                {productID:"4",category:"Sunglassess",brand:"Polo Fashion",price:"235",imgsrc:"/scripts/core/assets/img/img4.png"},
-                {productID:"5",category:"Contact Lens",brand:"VENT",price:"90",imgsrc:"/scripts/core/assets/img/img5.png" },
-                {productID:"6",category:"Driving Sunglassess",brand:"VENT",price:"75",imgsrc:"/scripts/core/assets/img/img6.png" },
-                {productID:"7",category:"Driving Sunglassess",brand:"VENT",price:"75",imgsrc:"/scripts/core/assets/img/img2.png" }
-            ]
-
-            function setProductsInCart (item){
-                alert ("adding to cart--- >"+ item);
+            var productList = [];
+           function setProducts (items){
+                productList = angular.copy(items);
+            }
+            function getProducts () {
+                return productList;
+            }
+            function setProductsInCart (item,isSelected){
+               if(isSelected){
                 productsInCart.push(item);
+                }else {
+                        //remove item from the cart
+                }
             }
             function getProductInCart () {
                 return productsInCart;
             }
-            function getProducts () {
-             return products;
-             }
-
-            //var productsInCart=[];
-
-           /* return {
-                getProductInCart: function () {
-                    return productsInCart;
-                },
-                setProductsInCart: function (value) {
-                    productsInCart = value;
-                },
-                getProducts : function getProducts () {
-                return products;
+            function getProductList(){
+                var deferred = $q.defer();
+                $http.get("http://onboardingexercise2.azurewebsites.net/api/v1/products")
+                    .success(function (data){
+                        deferred.resolve(data);
+                    })
+                    .catch(function (error){
+                        deferred.reject(error)
+                    });
+                return deferred.promise;
             }
-
-            };*/
-
-
-
-            /*function getProductOwners () {
-                return productOwners;
-            }*/
-
-
-
+            function getProductCategories(){
+                var deferred = $q.defer();
+                $http.get("http://onboardingexercise2.azurewebsites.net/api/v1/productCategories")
+                    .success(function (data){
+                        deferred.resolve(data);
+                    })
+                    .error(function (error){
+                        deferred.reject(error)
+                    });
+                return deferred.promise;
+            }
             var service = {
-                //getProductOwners:getProductOwners,
-                getProducts:getProducts,
+                getProductList:getProductList,
+                getProductCategories: getProductCategories,
                 setProductsInCart:setProductsInCart,
-                getProductInCart:getProductInCart
-                //getProductInCart:getProductInCart
-
+                getProductInCart:getProductInCart,
+                setProducts:setProducts,
+                getProducts:getProducts
             }
             return service;
         })

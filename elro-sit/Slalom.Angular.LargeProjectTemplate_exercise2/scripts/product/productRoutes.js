@@ -19,6 +19,7 @@ define([], function () {
                     "product/areas/productList/productListController"
                 ]
             },
+
             {
                 name: "productCheckOut",
                 url: "/product/productCheckOut",
@@ -28,8 +29,7 @@ define([], function () {
                     //"admin/areas/dashboard/scrumController",
                     "product/areas/productCheckOut/productCheckOutController",
                     "product/areas/productList/productListController"
-
-               ]
+                ]
             }
 
             // TODO: Add more routes here

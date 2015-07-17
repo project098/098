@@ -3,11 +3,7 @@
  */
 define (["product/productModule","product/shared/productListService"],function(){
      "use strict" ;
-
-
     angular.module("product").controller("productListController",function ($scope,productListService,$state) {
-        //alert ("hai");
-        //"product/shared/productCheckOutService"
         $scope.predicate = 'price';
         $scope.reverse = true;
         $scope.order = function(predicate) {
@@ -15,34 +11,35 @@ define (["product/productModule","product/shared/productListService"],function()
             $scope.predicate = predicate;
         };
         $scope.totalincart = 0;
-        $scope.productInCart = [];
+        $scope.productInCart = []
         $scope.addedItems =  function (isSelected,item){
-            alert ("in add items--> "+ isSelected);
             if (isSelected) {
-
-                alert ("inside select items array");
                 $scope.totalincart++;
                 $scope.productInCart.push(item);
-                //productCheckOutService.setProperty(item);
-                productListService.setProductsInCart(item);
-                //alert ("in check out ctrl--> "+$scope.productInCart[1]);
+                productListService.setProductsInCart(item,isSelected);
             }
             else {
+                productListService.setProductsInCart(item,isSelected);
                 $scope.totalincart--;
             }
         }
-
         $scope.changeState = function (){
             $state.go("productCheckOut");
         }
-
         function init (){
-            //$scope.productOwners = productOwnerListService.getProductOwners();
-            $scope.products = productListService.getProducts();
-            //productListService.setproductsInCart ($scope.productInCart);
-           // productCheckOutService.setProperty(item);
-
-
+            // Fetching List of products and product Category
+            productListService.getProductList().then(function(data){
+                $scope.productList =  data;
+                productListService.setProducts (data);
+            },function(error){
+                console.log("Products are not available");
+            });
+            productListService.getProductCategories().then(function(data){
+                $scope.productCategoriesList =  data;
+            },function(error){
+                console.log("Products are not available");
+            });
+            //productListService.setProducts ($scope.productList);
         }
         init ();
     });

@@ -23,12 +23,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>product ID</td>
-        <td>Product Brand</td>
-        <td>Product Price</td>
-        <td>imgsrc</td>
-        <td><button type="button" class="btn btn-info">Remove Item</button></td>
+    <tr ng-repeat="proroductInCart in itemsInCart">
+        <td>{{proroductInCart.productId}}</td>
+        <td>{{proroductInCart.name}}</td>
+        <td>{{proroductInCart.price}}</td>
+        <td><img ng-src="scripts/core/assets/img/{{$index}}.jpg"></td>
+        <td><button type="button" class="btn btn-info">Remove Item</button> <input type="checkbox"></td>
 
     </tr>
     </tbody>

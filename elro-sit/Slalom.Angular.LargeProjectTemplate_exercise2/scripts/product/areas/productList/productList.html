@@ -2,66 +2,57 @@
 
 
 <div>
-    <h1>Lens Mart Products</h1>
+    <h1>ZOOVI Products</h1>
     <!--<h3>{{description}}</h3>-->
     <!--<div ng-repeat="productOwner in productOwners">
         {{productOwner.name}}
     </div>-->
 
 
-    <div>
-
-
-    </div>
     <ul class="inline">
         <li>
             <div class="alert alert-info">
                 Search : <input type="text" ng-model="searchText" />
             </div>
         </li>
-        <li>
+    </ul>
             <div class="btn-group" ng-class="{open: open}">
                 <button class="btn">Filter by Category</button>
-                <button class="btn dropdown-toggle" ng-click="open=!open"><span class="caret"></span>
-                </button>
+                <button class="btn dropdown-toggle" ng-click="open=!open"><span class="caret"></span> </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                        <li ng-repeat="product in products | unique :'category'"><input type="checkbox" />{{product.category}} </li>
+                        <li ng-repeat="category in productCategoriesList"><input type="checkbox" />{{category.name}} </li>
                     </ul>
             </div>
-        </li>
-    </ul>
 
-        <h3>Product List:</h3>
 
+
+        <!--<h3>Product List:</h3>-->
         <table class="table table-hover table-striped">
             <thead>
             <tr>
                 <th style="width:10%">#</th>
-                <th style="width:10%">Brands</th>
-                <th style="width:10%">
-                    <a href="" ng-click="order('price')">Price ^</a>
-                </th>
+                <th style="width:10%">Name</th>
+                <th style="width:10%"><a href="" ng-click="order('price')">Price ^</a></th>
+                <!--<th style="width:20%">Category ID</th>-->
                 <th style="width:20%">Image</th>
                 <th style="width:20%">In Cart : {{totalincart}} : <button ng-click="changeState()">Check Out</button></th>
-
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in products | filter:searchText | orderBy:predicate:reverse ">
-                <td>{{product.productID}}</td>
-                <td>{{product.brand}}</td>
-                </td>
+            <tr ng-repeat="product in productList | filter:searchText | orderBy:predicate:reverse ">
+                <td>{{product.productId}}</td>
+                <td>{{product.name}}</td>
                 <td>{{product.price}}</td>
-                <td><img src="{{product.imgsrc}}"></td>
+               <!-- <td>{{product.productCategoryId}}</td>-->
+                <td><img ng-src="scripts/core/assets/img/{{$index}}.jpg"></td>
+                <!--<td>imgsrc:"/scripts/core/assets/img/img1.png</td>-->
                 <td>
                 <div class="checkbox">
-                    <label>Add<input type="checkbox" ng-model="isSelected" ng-change="addedItems (isSelected,product.productID)"></label>
+                    <label>Add<input type="checkbox" ng-model="isSelected" ng-change="addedItems (isSelected,product.productId)"></label>
                 </div>
                 </td>
             </tr>
             </tbody>
         </table>
-
     </div>
-
 </div>
