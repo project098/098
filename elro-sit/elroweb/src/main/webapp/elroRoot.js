@@ -40,7 +40,7 @@ elromodule.controller('menuCtrl',function($scope){
     /*
      Here you can handle controller for specific route as well.
      */
-    alert ("menuCtrl");
+    //alert ("menuCtrl");
     $scope.ishome = true;
 
 });
